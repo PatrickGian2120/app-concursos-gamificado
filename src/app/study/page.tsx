@@ -9,7 +9,6 @@ import Navbar from '@/components/custom/navbar';
 import { Question } from '@/lib/types';
 import { Trophy, Sparkles, ArrowRight, RotateCcw } from 'lucide-react';
 import Link from 'next/link';
-import confetti from 'canvas-confetti';
 
 export default function StudyPage() {
   const { user, addXP, updateStreak, addBadge } = useGameProgress();
@@ -40,15 +39,6 @@ export default function StudyPage() {
       setTotalXPEarned((prev) => prev + xpEarned);
       
       const result = addXP(xpEarned);
-      
-      // Confetti se subiu de nível
-      if (result.leveledUp) {
-        confetti({
-          particleCount: 100,
-          spread: 70,
-          origin: { y: 0.6 },
-        });
-      }
     }
 
     // Próxima questão ou finalizar
@@ -83,13 +73,6 @@ export default function StudyPage() {
     });
 
     setNewBadges(unlockedBadges);
-
-    // Confetti final
-    confetti({
-      particleCount: 150,
-      spread: 100,
-      origin: { y: 0.5 },
-    });
   };
 
   if (sessionComplete) {

@@ -9,7 +9,6 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Eye, EyeOff, Trophy, Zap, Target } from 'lucide-react';
-import { toast } from 'sonner';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -38,10 +37,10 @@ export default function LoginPage() {
 
       if (error) throw error;
 
-      toast.success('Login realizado com sucesso!');
+      // Login realizado com sucesso
       router.push('/onboarding');
     } catch (error: any) {
-      toast.error(error.message || 'Erro ao fazer login');
+      // Erro ao fazer login
     } finally {
       setIsLoading(false);
     }
@@ -51,12 +50,10 @@ export default function LoginPage() {
     e.preventDefault();
 
     if (signupPassword !== signupConfirmPassword) {
-      toast.error('As senhas não coincidem');
       return;
     }
 
     if (signupPassword.length < 6) {
-      toast.error('A senha deve ter pelo menos 6 caracteres');
       return;
     }
 
@@ -75,14 +72,14 @@ export default function LoginPage() {
 
       if (error) throw error;
 
-      toast.success('Conta criada com sucesso! Faça login para continuar.');
+      // Limpar campos
       // Limpar campos
       setSignupName('');
       setSignupEmail('');
       setSignupPassword('');
       setSignupConfirmPassword('');
     } catch (error: any) {
-      toast.error(error.message || 'Erro ao criar conta');
+      // Erro ao criar conta
     } finally {
       setIsLoading(false);
     }
@@ -214,7 +211,6 @@ export default function LoginPage() {
                     <button
                       type="button"
                       className="text-sm text-blue-600 hover:underline"
-                      onClick={() => toast.info('Funcionalidade em breve!')}
                     >
                       Esqueceu sua senha?
                     </button>
